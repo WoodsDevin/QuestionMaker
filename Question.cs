@@ -1,21 +1,20 @@
-public class Question<T>
+public class Question
     {
+        Response<int>[] responsesArray = new Response<int>[4];
+        
         // Constructor
-        public Question(string _Q , T R1, T R2, T R3, T R4)
+        public Question(string _Q , Response<int> R1, Response<int> R2, Response<int> R3, Response<int> R4)
         {
             Q = _Q;
-            ResponseA = R1;
-            ResponseB = R2;
-            ResponseC = R3;
-            ResponseD = R4;
+            
+            responsesArray[0] = R1;
+            responsesArray[1] = R2;
+            responsesArray[2] = R3;
+            responsesArray[3] = R4;
         }
         
         // Class members
         private string Q {get; set;}
-        public T ResponseA {get; private set;}
-        public T ResponseB {get; private set;}
-        public T ResponseC {get; private set;}
-        public T ResponseD {get; private set;}
         
         // Method to show question
         public void ShowQuestion()
@@ -26,18 +25,18 @@ public class Question<T>
         // Method to show all possible answers
         public void ShowAnswers()
         {
-            Console.WriteLine("A) " + ResponseA.ToString());
-            Console.WriteLine("B) " + ResponseB.ToString());
-            Console.WriteLine("C) " + ResponseC.ToString());
-            Console.WriteLine("D) " + ResponseD.ToString());
+            for(int i = 0; i < responsesArray.Length; i++)
+            {                
+                Console.WriteLine((i + 1) + ") " + responsesArray[i].Data.ToString());   
+            }
         }
         
         // Method to show answer types (Useful when utilizing generic types)
         public void ShowTypes()
         {
-            Console.WriteLine("Response A = " + ResponseA.GetType().ToString()); 
-            Console.WriteLine("Response B = " + ResponseB.GetType().ToString()); 
-            Console.WriteLine("Response C = " + ResponseC.GetType().ToString()); 
-            Console.WriteLine("Response D = " + ResponseD.GetType().ToString()); 
+            for(int i = 0; i < responsesArray.Length; i++)
+            {
+                Console.WriteLine(responsesArray[i].GetType().ToString());   
+            }
         }
     }
